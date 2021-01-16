@@ -2,35 +2,15 @@ const express = require('express');
 const hostname = 'localhost';
 const port = 3000;
 const app = express();
-const {nanoid} = require('nanoid');
 const morgan = require('morgan');
+const longRouter = require('./routes/longRouter');
+const shortRouter = require('./routes/shortRouter');
 
 app.use(morgan('common'));
 app.use(express.json());
 
-app.use(function(req, res, next) {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain')
-  next();
-});
-
-app.get('/:short', (req, res) => {
-  res.end(`Will look for ${req.params.short} and do the redirect if found.}`);
-});
-
-app.post('/long', (req, res) => {
-  res.end(`Will assign long URL: ${req.body.longUrl}\nto a short, e.g. http://${hostname}:${port}/${nanoid(7)}`);
-});
-
-app.put('/long', (req, res) => {
-  res.statusCode = 403;
-  res.end('PUT operation not supported on /long');
-});
-
-app.delete('/long', (req, res) => {
-  res.statusCode = 403;
-  res.end('DELETE operation not supported on /long');
-});
+app.use('/long', longRouter);
+app.use('/', shortRouter);
 
 app.use(express.static(__dirname + '/public'));
 
@@ -42,5 +22,4 @@ app.use((req, res) => {
 
 app.listen(port, hostname, () => {
     console.log(`Server running at http://${hostname}:${port}/.`);
-    // 4.3980465111e+12 possible permutations!
 });

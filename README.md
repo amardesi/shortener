@@ -19,4 +19,4 @@ The Express app uses two endpoints: `/long` for posting long URLs and checking i
 ## Usage
 
 ## License
-Distributed under the MIT License. See `LICENSE` for more information.
+Distributed under the ISC License. See `LICENSE` for more information.
