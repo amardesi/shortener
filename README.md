@@ -8,6 +8,9 @@ MERN Stack:
 * [React](https://reactjs.org/)
 * [Node](https://nodejs.org/en/)
 
+## Express Routes
+The Express app uses two endpoints: `/long` for posting long URLs and checking if they already exist, and `/:short` for calling up the long URL and performing the redirect.
+
 ### Prerequisites
 * Node
 
