@@ -4,10 +4,7 @@ const { origin, dataUrl } = require('../shared/shared.js');
 const axios = require('axios');
 
 const success = (res, shortUrl, longUrl) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end(`Found original link for ${shortUrl}. It's ${longUrl}.`);
-  // Eventually: return res.redirect(longUrl);
+  res.send(JSON.stringify({ longUrl: longUrl }));
 }
 
 shortRouter.route('/:short')
