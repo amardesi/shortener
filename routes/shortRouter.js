@@ -1,5 +1,6 @@
 const express = require('express');
 const shortRouter = express.Router();
+import { dataUrl } from '../shared/shared';
 
 shortRouter.route('/:short')
 .get((req, res) => {

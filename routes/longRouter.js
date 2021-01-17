@@ -1,4 +1,5 @@
 const express = require('express');
+import { expressHost, expressPort, dataUrl } from '../shared/shared';
 const longRouter = express.Router();
 const {nanoid} = require('nanoid');
 
@@ -10,7 +11,8 @@ longRouter.route('/')
 })
 .post((req, res) => {
   res.end(`Will assign long URL: ${req.body.longUrl} \
-  \nto a short e.g. http://${req.hostname}:${req.socket.address().port}/${nanoid(7)}`);
+  \nto a short e.g. http://${expressHost}:${expressPort}/${nanoid(7)}`);
+  /* http://${req.hostname}:${req.socket.address().port}/${nanoid(7)}`); */
   // 4.3980465111e+12 possible permutations!
 })
 .put((req, res) => {
