@@ -1,8 +1,5 @@
 const express = require('express');
-import { expressHost, expressPort } from '../shared/shared';
-export const expressHost = 'http://localhost';
-export const expressPort = 3000;
-export const dataUrl = 'http://localhost:3001/';
+const { expressHost, expressPort } = require('./shared/shared.js');
 const hostname = 'localhost';
 const port = 3000;
 const app = express();

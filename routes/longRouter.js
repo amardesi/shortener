@@ -1,5 +1,5 @@
 const express = require('express');
-import { expressHost, expressPort, dataUrl } from '../shared/shared';
+const { expressHost, expressPort, dataUrl } = require('../shared/shared.js');
 const longRouter = express.Router();
 const {nanoid} = require('nanoid');
 
