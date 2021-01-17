@@ -1,5 +1,6 @@
-const expressHost = 'http://localhost';
-const expressPort = 3000;
-const dataUrl = 'http://localhost:3001/';
+const host = 'localhost';
+const port = 3000;
+const origin = `http://${host}:${port}`
+const dataUrl = `http://${host}:3001`;
 
-module.exports = {expressHost, expressPort, dataUrl}
+module.exports = {host, port, origin, dataUrl}

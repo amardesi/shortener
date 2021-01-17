@@ -1,7 +1,5 @@
 const express = require('express');
-const { expressHost, expressPort } = require('./shared/shared.js');
-const hostname = 'localhost';
-const port = 3000;
+const { host, port } = require('./shared/shared.js');
 const app = express();
 const morgan = require('morgan');
 const longRouter = require('./routes/longRouter');
@@ -16,11 +14,20 @@ app.use('/', shortRouter);
 app.use(express.static(__dirname + '/public'));
 
 app.use((req, res) => {
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/html');
-    res.end('<html><body><h1>This is an Express Server</h1></body></html>');
+  const error = new Error("Not found");
+  error.status = 404;
+  next(error);
 });
 
-app.listen(port, hostname, () => {
-    console.log(`Server running at http://${hostname}:${port}/.`);
+app.use((error, req, res, next) => {
+  res.status(error.status || 500).send({
+    error: {
+      status: error.status || 500,
+      message: error.message || 'Internal Server Error',
+    },
+  });
+});
+
+app.listen(port, host, () => {
+    console.log(`Server running at http://${host}:${port}/.`);
 });
