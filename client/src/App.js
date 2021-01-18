@@ -4,7 +4,8 @@ function Search(props) {
   const [s, setStatus] = useState("Searching...");
 
   if (props.short) {
-    // placeholder for case of short URL not being found
+    /* Placeholder for case of short URL not being found. 
+      This should be controlled by server reponse in the end */
     setTimeout(() => { 
       setStatus(`That URL ${window.location} is not found.`)
     }, 4200);
@@ -21,9 +22,10 @@ function Search(props) {
 }
 
 function App() {
-  const short = window.location.pathname.split('/')[1];
   const [longUrl, setLongUrl] = useState("");
 
+  // Redirect a short URL request
+  const short = window.location.pathname.split('/')[1];
   /* Length property of 7 should actually  be a global constant
      since this is tied to the slugs being generated */
   if (short && short.length === 7) {

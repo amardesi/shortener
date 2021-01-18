@@ -1,7 +1,12 @@
 const express = require('express');
-const { host, port, dataUrl } = require('../shared/shared.js');
+const { origin, dataUrl } = require('../shared/shared.js');
 const longRouter = express.Router();
 const {nanoid} = require('nanoid');
+const axios = require('axios');
+
+const success = (res, short, longUrl) => {
+  res.send(JSON.stringify({ "short": short, "longUrl": longUrl }));
+}
 
 longRouter.route('/')
 .all((req, res, next) => {
@@ -10,9 +15,15 @@ longRouter.route('/')
     next();
 })
 .post((req, res) => {
-  res.end(`Will assign long URL: ${req.body.longUrl} \
-  \nto a short e.g. http://${host}:${port}/${nanoid(7)}`);
-  // 4.3980465111e+12 possible permutations!
+  const uniqueStub = nanoid(7);    // 4.3980465111e+12 possible permutations!
+  axios.post(`${dataUrl}/data`, { short: uniqueStub, longUrl: req.body.longUrl })
+  .then(dataResp => {
+    success(res, `${origin}/${uniqueStub}`, dataResp.data.longUrl);
+  })
+  .catch(err => {
+    console.log(err);
+  });
+
 })
 .put((req, res) => {
   res.statusCode = 403;
