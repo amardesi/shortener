@@ -11,8 +11,8 @@ shortRouter.route('/:short')
 .get((req, res) => {
   axios.get(`${dataUrl}/data`)
     .then(resp => {
-      // We're just filtering an item out of a file.... not as fast as an indexed DB 🚄
-      return resp.data.filter(item => item.shortUrl === req.params.short)[0];
+      // Not as fast as using an indexed DB 🚄
+      return resp.data.find(item => item.shortUrl === req.params.short);
     })
     .then(target => {
       target && (target.longUrl !== undefined) && (target.longUrl !== "") ?

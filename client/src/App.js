@@ -1,16 +1,42 @@
 import { useState } from 'react';
 
+function Search(props) {
+  const [s, setStatus] = useState("Searching...");
+
+  if (props.short) {
+    // placeholder for case of short URL not being found
+    setTimeout(() => { 
+      setStatus(`That URL ${window.location} is not found.`)
+    }, 4200);
+  } else {
+    return <div/>;
+  }
+  return (
+    <div className="pure-g">
+      <div className="pure-u-1">
+        <h2>{s}</h2>
+      </div>
+    </div>
+  )
+}
+
 function App() {
+  const short = window.location.pathname.split('/')[1];
   const [longUrl, setLongUrl] = useState("");
-  
+
+  /* Length property of 7 should actually  be a global constant
+     since this is tied to the slugs being generated */
+  if (short && short.length === 7) {
+    fetch(`/${short}`)
+    .then(response => response.json())
+    // I'm trusting the URLs sitting in the database are safe
+    .then(obj => window.location = obj.longUrl);
+  }
+
   const handleSubmit = (e) => {
       e.preventDefault();
-      // Just confirm we can talk to server and get a response
-      fetch("/V1SGXR8")
-        .then(response => response.json())
-        // I'm trusting what URLs are sitting in the database
-        .then(obj => window.location = obj.longUrl);
   }
+
   return (
     <div className="container">
       <div className="pure-g content">
@@ -23,6 +49,7 @@ function App() {
             <button type="submit" className="button-xlarge pure-button pure-button-primary pure-u-1-4 pure-u-sm-1">Shorten</button>
           </div>
         </form>
+        <Search short={short} />
       </div>
     </div>
   );
