@@ -18,7 +18,7 @@ longRouter.route('/')
   const uniqueStub = nanoid(7);    // 4.3980465111e+12 possible permutations!
   axios.post(`${dataUrl}/data`, { short: uniqueStub, longUrl: req.body.longUrl })
   .then(dataResp => {
-    success(res, `${origin}/${uniqueStub}`, dataResp.data.longUrl);
+    success(res, `${uniqueStub}`, dataResp.data.longUrl);
   })
   .catch(err => {
     console.log(err);
