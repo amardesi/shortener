@@ -37,7 +37,10 @@ function App() {
   /* Length property of 7 should actually  be a global constant
      since this is tied to the slugs being generated */
   // if (short && short.length === 7) {
-  //   fetch(`/${short}`)
+  //   fetch(`/${short}`, {
+        //   method: "GET",
+        //   headers: {"Content-type": "application/json;charset=UTF-8"}
+        // })
   //   .then(response => response.json())
   //   // I'm trusting the URLs sitting in the database are safe
   //   .then(obj => window.location = obj.longUrl);
