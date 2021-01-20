@@ -62,7 +62,6 @@ Currently only built to run on a development server. Configuration and build ste
   * Also test against internationalized resource identifiers (IRI) and internationalized domain names (IDN)
   * Short URLs not found on the system are handled poorly
   * Install polyfill for fetch to work with IE users
-  * Front-end validation: if a user enters an invalid URL
   * Explore ways to reduce React bundle size (e.g. tree shaking)
   * Animated loading indicators
   * Add cookie functionality (user's most recent short and long URLs)
