@@ -58,6 +58,7 @@ Currently only built to run on a development server. Configuration and build ste
   * Configuring for production
 
 #### User experience/performance
+  * Let user easily cipy URL (use SimpleCopy, or ClipboardJS)
   * Validation: check that user is entering a valid URL
   * Also test against internationalized resource identifiers (IRI) and internationalized domain names (IDN)
   * Short URLs not found on the system are handled poorly
