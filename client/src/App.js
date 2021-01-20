@@ -1,5 +1,5 @@
-import Assigned from './components/Assigned';
-import Assign from './components/Assign';
+import AssignedShort from './components/AssignedShort';
+import AssignLong from './components/AssignLong';
 
 function App() {
   const path = window.location.pathname.split('/')[1];
@@ -7,8 +7,8 @@ function App() {
     <div className="container">
       <div className="pure-g content">
         {path
-          ? <Assigned path={path}/>
-          : <Assign />
+          ? <AssignedShort path={path}/>
+          : <AssignLong />
         }
       </div>
     </div>

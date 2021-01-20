@@ -1,4 +1,7 @@
 import { useAsyncTaskFetch } from "react-hooks-async";
+// Not using ApiHook like we are in AssignedShort. 
+// We need to use this library in order to call async from an event handler
+// If there was more time I would have re-factored so that both modules use this same library.
 
 const Found = (props) => (
   <div className="pure-g">
@@ -8,7 +11,7 @@ const Found = (props) => (
   </div>
 )
 
-function Assign() {
+function AssignLong() {
   const origin = window.location.origin;
   const { error, result, start } = useAsyncTaskFetch('http://localhost:3000/long');
   const shortCode = ((!error && result) ? result.short : '');
@@ -29,10 +32,11 @@ function Assign() {
         <input id="inputBox" type="text" name="longUrl" required="" className="pure-u-3-4 pure-u-sm-1" />
         <button type="submit" className="button-xlarge pure-button pure-button-primary pure-u-1-4 pure-u-sm-1">Shorten</button>
       </div>
+      {/* A loading spinner would be nice here */}
       {shortCode && shortCode !== "" && 
         <Found message={"Here's your short URL: "} link={`${origin}/${shortCode}`} /> }
     </form>
   )
 };
 
-export default Assign;
+export default AssignLong;

@@ -1,6 +1,6 @@
 import ApiHook from './ApiHook';
 
-function Assigned(props) {
+function AssignedShort(props) {
   let loading = true;
   let status = "Searching...";
   let link= "";
@@ -45,4 +45,4 @@ function Assigned(props) {
   )
 }
 
-export default Assigned;
+export default AssignedShort;
