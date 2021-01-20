@@ -1,7 +1,5 @@
-// import { useState } from 'react';
-// import { useAsyncRun } from 'react-hooks-async';
-// import ApiHook from './ApiHook';
 import { useAsyncTaskFetch } from "react-hooks-async";
+import { useRef } from "react";
 
 const Found = (props) => (
   <div className="pure-g">
@@ -12,24 +10,16 @@ const Found = (props) => (
 );
 
 function Assign() {
-  const host = window.location.host;
-  // const [status, setStatus] = useState("");
-  let longUrl= "";
+  const host = window.location.host;  
   let shortCode = "";
-  let loading = false;
-  // const asyncTask = ApiHook(null, null, null);
-  // useAsyncRun(asyncTask);
-  // const { start, isLoading, hasError, data } = asyncTask;
-  const path = 'long';
-  let options = {};
-  const { started, pending, error, result, start, abort } = useAsyncTaskFetch(path, options);
+  const path = useRef('localhost:3000/long');
+  let options = useRef({});
+  const { pending, error, result, start } = useAsyncTaskFetch(path, null, options);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    loading = true;
-    start(path, options); // null
-    loading = pending;
-    options = {
+    start(path, options);
+    options.current = {
       method: "POST",
       body: JSON.stringify({ longUrl: document.getElementById('inputBox').value}),
       headers: { "Content-Type": "application/json" }};
@@ -38,7 +28,7 @@ function Assign() {
     }
 
   }
-  // onChange={e => longUrl = e.target.value}
+
   return (
     <form className="pure-form pure-u-1" onSubmit={handleSubmit}>
       <h1>Shorten a URL</h1>
@@ -49,7 +39,7 @@ function Assign() {
       </div>
       {shortCode && shortCode !== "" &&
         <Found message={"Here's your short URL: "} link={`${host}/${shortCode}`} /> }
-      {loading &&
+      {pending &&
         <div>Loading...</div>}
     </form>
   )

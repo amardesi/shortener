@@ -11,7 +11,7 @@ This is a repository for a simple URL shortener web application. The JavaScript 
 * [create-react-app](https://reactjs.org/) a boilerplate version of React: a component based user interface JS library
 * [JSON-Server](https://github.com/typicode/json-server) a fake REST API to handle data
 
-### Front end caveats:**
+### Front end caveats:
 * This is a very simple, single view app with minimal components. Using React for the front end is a bit overkill. If I had time, I would look for a more lightweight solution.
 * Because this is a small project, no CSS frameworks, preprocessor, or component library was developed. Although that would be best approach for most control and minimal footprint. For this project, I picked [PureCSS](https://purecss.io/) for a lightweight, responsive styling framework promising compatibility across browsers.
 
