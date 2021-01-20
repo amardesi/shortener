@@ -49,5 +49,23 @@ The file structure of this app is logically divided to represent three separate 
 ## Current Release
 Currently only built to run on a development server. Configuration and build steps are needed for creation of a production instance.
 
+### Things that are incomplete and could be made better:
+#### Code environment/process:
+  * Write unit tests
+  * Better organization and placement of environment variables. Right now, everything sits in a shared.js, which also shouldn't be residing in the git repo
+  * Toolchain: https://reactjs.org/docs/create-a-new-react-app.html#more-flexible-toolchains
+  * Add ESLint and eslint-plugin-react-hooks
+  * Configuring for production
+
+#### User experience/performance
+  * Validation: check that user is entering a valid URL
+  * Also test against internationalized resource identifiers (IRI) and internationalized domain names (IDN)
+  * Short URLs not found on the system are handled poorly
+  * Install polyfill for fetch to work with IE users
+  * Front-end validation: if a user enters an invalid URL
+  * Explore ways to reduce React bundle size (e.g. tree shaking)
+  * Animated loading indicators
+  * Add cookie functionality (user's most recent short and long URLs)
+
 ## License
 Distributed under the ISC License. See `LICENSE` for more information.
