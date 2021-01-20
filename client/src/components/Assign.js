@@ -10,15 +10,16 @@ const Found = (props) => (
 );
 
 function Assign() {
-  const host = window.location.host;  
+  const host = window.location.host;
   let shortCode = "";
-  const path = useRef('localhost:3000/long');
+  const path = useRef('http://localhost:3000/long');
   let options = useRef({});
-  const { pending, error, result, start } = useAsyncTaskFetch(path, null, options);
+  const { pending, error, result, start } = useAsyncTaskFetch("");
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    start(path, options);
+    start(path.current, options.current);
     options.current = {
       method: "POST",
       body: JSON.stringify({ longUrl: document.getElementById('inputBox').value}),
