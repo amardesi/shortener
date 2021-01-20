@@ -1,10 +1,12 @@
 const express = require('express');
+const cors = require('cors');
 const { host, port } = require('./shared/shared.js');
 const app = express();
 const morgan = require('morgan');
 const longRouter = require('./routes/longRouter');
 const shortRouter = require('./routes/shortRouter');
 
+app.use(cors());
 app.use(morgan('common'));
 app.use(express.json());
 
